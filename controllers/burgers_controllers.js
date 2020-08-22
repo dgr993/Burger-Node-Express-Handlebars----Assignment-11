@@ -19,7 +19,7 @@ router.get("/", function(req, res) {
     burger.create([
       "burger_name", "devoured"
     ], [
-      req.body.burger_name, req.body.devoured
+      req.body.name, req.body.devoured
     ], function(result) {
       // Send back the ID of the new quote
       res.json({ id: result.insertId });
@@ -32,6 +32,7 @@ router.get("/", function(req, res) {
     console.log("condition", condition);
   
     burger.update({
+      burger_name: req.body.burger_name,
       devoured: req.body.devoured
     }, condition, function(result) {
       if (result.changedRows == 0) {
